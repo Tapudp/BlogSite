@@ -3,10 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>oAuth tutorials</title>
+    <title>dPLekha</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="main.css" />-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+
+
     <style>
         body{
             font-family: consolas;
@@ -54,34 +57,54 @@
         <ul>
             <% if(user) { %>
                 <li><a href="/logout"><button type="submit"> Logout</button></a></li>
+                <li><a href="/profile/">Profile</a></li>
             <% } else { %>
                 <li><a href="/login"><button> Login</button></a></li>
             <% } %>
             <li><a href="/">Homepage</a></li>
-            <li><a href="/profile/">Profile</a></li>
         </ul>
     </nav>
     <header>
-        <h1>Welcome to your profile, <%= user.username %> </h1>
+        <h1>Welcome to your dPLekha, <%= user.username %> </h1>
     </header>
-    <main>
-        <img src=<%= user.thumbnail %> alt="">
-        <p>this is your DP.</p>
-        <p>extra information about you, id: <%= user.id %> </p>
+    <main style="padding-left: 10px;" class="jumbotron jumbotron-fluid">
+        <img style="margin: 20px;" src=<%= user.thumbnail %> alt="Add your image">
+        <p>this is your DP </p>
+        <p>extra information about you, id: <%= user.id %></p>
     </main>
-    <form action="/profile/post/:id" method="post">
-        <div class="form-group">
-            <label for="title">Title : </label>
+
+    <!--
+        BLOG FORM HERE 
+
+    -->
+    <form action="/profile/" method="post" style="margin: 200px;">
+        
+        <!-- TITLEEEEEEE -->
+        
+        <div>
+            <label for="title"> Title : </label>
             <input type="text" name="title">
         </div>
-        <div class="form-group">
-            <label for="content">Content : </label>
-            <input type="text" name="content">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Content: </span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea"></textarea>
         </div>
         <div class="form-group">
-            <label for="author"> By <%= user.username %></label>
+            <!--<label for="author"> By <%= user.username %></label>-->
+            <input class="form-control form-control-sm" type="text" placeholder="By <%= user.username %>" readonly>
         </div>
-        <button type="submit" class="btn btn-success"> Submit </button>
+        <button type="submit" class="btn btn-success btn-outline-secondary btn-block" > Submit </button>
     </form>
+
+    <div class="card" style="width: 18rem; margin: 20%;">
+            <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
 </body>
 </html>

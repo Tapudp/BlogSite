@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const User = require('../models/user-model');
 
 router.get('/', (req, res) => {
     res.render('home', { user: req.user });
@@ -11,10 +12,6 @@ router.get('/', (req, res) => {
 
 router.get('/login', (req, res) => {
     res.render('login', { user: req.user });
-})
-
-router.get('/profile', (req, res) => {
-    res.render('profile');
 })
 
 router.get('/logout', (req, res) => {

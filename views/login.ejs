@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>dPLekha</title>
     <style>
         body{
             font-family: consolas;
@@ -50,15 +50,18 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/logout"><button type="submit"> Logout</button></a></li>
-            <li><a href="/login"><button> Login</button></a></li>
+            <% if(user) { %>
+                <li><a href="/logout"><button type="submit"> Logout</button></a></li>
+                <li><a href="/profile/">Profile</a></li>
+            <% } else { %>
+                <li><a href="/login"><button> Login</button></a></li>
+            <% } %>
             <li><a href="/">Homepage</a></li>
-            <li><a href="/profile">Profile</a></li>
         </ul>
     </nav>
     <header>
         <p>You need to Login first using available options...</p>
-        <h1>Login using...</h1>
+        <h1>Login to dPLekha using...</h1>
     </header>
     <main>
         <a class="google-btn" href="/google">Google+</a>

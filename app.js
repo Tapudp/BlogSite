@@ -3,13 +3,14 @@ const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const keys = require('./config/keys');
-const workRoutes = require('./routes/blog-route.js');
 const passportSetup = require('./config/passport-setup');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const workRoutes = require('./routes/blog-route.js');
 const profileRoutes = require('./routes/profile-route');
 
 const app = express();
+
 
 // setup db
 mongoose.connect(keys.mongodb.dbURI, () => {
