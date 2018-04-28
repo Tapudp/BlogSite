@@ -16,18 +16,22 @@ const authCheck = (req, res, next) => {
 
 router.get('/', authCheck, (req, res) => {
     //res.send('hi I\'m divyesh');
-    res.render('profile', { user: req.user });
+    Post.find({}, (err, posts) => {
+        res.render('profile', {user: req.user, post: posts});
+    })
+    //res.render('profile', { user: req.user });
 });
 
-router.post('/', (req, res) => {
+router.post('/',  (req, res) => {
     var postData = new Post(req.title, req.content);
     postData.save().then(result => {
         console.log(result);
+        console.log(req.body);
         res.redirect('/');
     }).catch(err => {
         res.status(404).send('Unable to save data to db');
     });
-    res.send('you posted the the new blog with title ' + req.title + 'and content' +req.content) ;
+    //res.send('you posted the the new blog with title ' + req.title + 'and content' +req.content) ;
 
 });
 

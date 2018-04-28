@@ -8,6 +8,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const workRoutes = require('./routes/blog-route.js');
 const profileRoutes = require('./routes/profile-route');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -19,6 +20,8 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 
 //set up view engine
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded( { extended: true } ));
 
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
