@@ -71,6 +71,7 @@
         <img style="margin: 20px;" src=<%= user.thumbnail %> alt="Add your image">
         <p>this is your DP </p>
         <p>extra information about you, id: <%= user.id %></p>
+        <p><%= post.title %></p>
     </main>
 
     <!--
@@ -87,19 +88,21 @@
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text">Content: </span>
+                <label for="content"> Content : </label>
+                <input type="text" name="content">
             </div>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
         </div>
-        <div class="form-group">
-            <!--<label for="author"> By <%= user.username %></label>-->
+        <div class="form-group input-group-prepend input-group">
+            <label for="author"> Author: </label>
+            <input type="text" name="author">
             <input class="form-control form-control-sm" type="text" placeholder="By <%= user.username %>" readonly>
         </div>
         <button type="submit" class="btn btn-success btn-outline-secondary btn-block" > Submit </button>
     </form>
 
-    <div class="showing posts">
-        
+    <div class="container">
+        <h2>Posts</h2>
+        <p><%= post %></p>
     </div>
 </body>
 </html>

@@ -14,16 +14,11 @@ const authCheck = (req, res, next) => {
     }
 }
 
-router.get('/', authCheck, (req, res) => {
-    //res.send('hi I\'m divyesh');
-    Post.find({}, (err, posts) => {
-        res.render('profile', {user: req.user, post: posts});
-    })
-    //res.render('profile', { user: req.user });
-});
+
+
 
 router.post('/',  (req, res) => {
-    var postData = new Post(req.title, req.content);
+    var postData = new Post(req.body);
     postData.save().then(result => {
         console.log(result);
         console.log(req.body);
@@ -32,7 +27,24 @@ router.post('/',  (req, res) => {
         res.status(404).send('Unable to save data to db');
     });
     //res.send('you posted the the new blog with title ' + req.title + 'and content' +req.content) ;
+    
+});
 
+router.get('/', authCheck, (req, res) => {
+    //res.send('hi I\'m divyesh');
+    var post = Post.find((err, post) => {
+        if(err) { console.log(err); }
+        else if (post.length){
+            console.log('Found: ', post);
+        }
+        else {
+            console.log('No document(s) found with defined "find" criteria!');
+        }
+    });
+    
+
+    res.render('profile', {user: req.user, post: post});
+    //res.render('profile', { user: req.user });
 });
 
 module.exports = router;
