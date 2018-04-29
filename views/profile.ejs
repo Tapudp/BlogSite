@@ -71,38 +71,61 @@
         <img style="margin: 20px;" src=<%= user.thumbnail %> alt="Add your image">
         <p>this is your DP </p>
         <p>extra information about you, id: <%= user.id %></p>
-        <p><%= post.title %></p>
     </main>
 
     <!--
         BLOG FORM HERE 
 
     -->
-    <form action="/profile/" method="post" style="margin: 200px;">
+    <form action="/profile/" method="post">
         
         <!-- TITLEEEEEEE -->
-        
-        <div>
-            <label for="title"> Title : </label>
-            <input type="text" name="title">
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <label for="content"> Content : </label>
-                <input type="text" name="content">
+        <div class="container form">
+            <h2>Shower thouhgts</h2>
+            <div class="form-group input-group form-row">
+                <div class="input-group-prepend col">
+                    <label for="title" > Title</label>
+                    <div class="col-5">
+                        <input type="text" class="form-control form-control-sm" name="title">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-row input-group">
+                <div class="input-group-prepend col">
+                    <label for="content"> Content</label>
+                    <div class="col-5">
+                        <input type="text" class="form-control" name="content">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-row input-group">
+                <div class="input-group-prepend col">
+                    <label for="author"> Author </label>
+                    <input type="text col-5" class="form-control form-control-sm" name="author">
+                    <input class="form-control form-control-sm" type="text" placeholder="By <%= user.username %>" readonly>
+                </div>
+            </div>
+            <div class="clearfix">
+                <button type="submit" class="btn btn-success btn-float-right btn-outline-info" > Submit </button>
             </div>
         </div>
-        <div class="form-group input-group-prepend input-group">
-            <label for="author"> Author: </label>
-            <input type="text" name="author">
-            <input class="form-control form-control-sm" type="text" placeholder="By <%= user.username %>" readonly>
-        </div>
-        <button type="submit" class="btn btn-success btn-outline-secondary btn-block" > Submit </button>
     </form>
-
+    </div>
     <div class="container">
         <h2>Posts</h2>
-        <p><%= post %></p>
+        <div class="card-deck" style="padding-block-start: 20em;">
+        <% posts.forEach((POST) => { %>
+            <div class= "card border-info mb-3" style="width: 18px;">
+                <div class="card-body">
+                    <h5 class="card-header text-danger border-success"><%= POST.title %></h5>
+                    <p class="card-text text-dark text-center "><%= POST.content %></p>
+                </div>
+                <div class="card-footer text-success text-right"><small class="text-muted">written by </small> <%= POST.author %></div>
+
+            </div>
+            <% } ) %>
+        </div>
     </div>
 </body>
 </html>
