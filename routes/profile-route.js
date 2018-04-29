@@ -15,22 +15,20 @@ const authCheck = (req, res, next) => {
 }
 
 
-
+/**
+ * taken from here 
+ * https://stackoverflow.com/questions/46565239/displaying-data-from-a-mongodb-collection-in-ejs-using-mongoose
+ */
 
 router.post('/',  (req, res) => {
     var postData = new Post(req.body);
-    if(postData.length){
-
-        postData.save().then(result => {
-            console.log(result);
-            console.log(req.body);
-            res.redirect('/');
-        }).catch(err => {
-            res.status(404).send('Unable to save data to db');
-        });
-    } else {
+    postData.save().then(result => {
+        console.log(result);
+        console.log(req.body);
         res.redirect('/profile');
-    }
+        }).catch(err => {
+        res.status(404).send('Unable to save data to db');
+    });
     //res.send('you posted the the new blog with title ' + req.title + 'and content' +req.content) ;
     
 });
